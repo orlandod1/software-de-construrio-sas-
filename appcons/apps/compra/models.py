@@ -1,12 +1,21 @@
 from django.db import models
 from django.db.models.base import Model
 
+
 # Create your models here.
 class Compra (models.Model):
+    co_fechaIngreso= models.DateField(verbose_name="FechaIngreso")
+    co_Total= models.IntegerField(max_length=11,verbose_name="Total")
     
-    co_cantidad2 = models.IntegerField(max_length=11,verbose_name="Cantidad2")
 
-    co_cantidad = models.IntegerField(max_length=11,verbose_name="Cantidad")
+    def __str__(self):
+        return  '{}'.format(self.co_fechaIngreso)
 
+
+    class Meta:
+        verbose_name="Compra"
+        verbose_name_plural="Compras"
+    
 
     
+
