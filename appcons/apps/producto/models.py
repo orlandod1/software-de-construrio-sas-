@@ -10,9 +10,9 @@ class Producto  (models.Model):
     nombre= models.ForeignKey(Material,null=True,blank=True,on_delete=models.CASCADE)
     compra = models.ForeignKey(Compra,null=True,blank=True,on_delete=models.CASCADE)
     unidad = models.ForeignKey(Unidad,null=True,blank=True,on_delete=models.CASCADE)
-    pro_cantidad = models.IntegerField(max_length=10, verbose_name="Cantidad")
-    pro_precio = models.IntegerField(max_length=10, verbose_name="Precio")
-    pro_total = models.IntegerField(max_length=10, verbose_name="Total")
+    pro_cantidad = models.PositiveIntegerField(max_length=10, verbose_name="Cantidad")
+    pro_precio = models.PositiveIntegerField(max_length=10, verbose_name="Precio")
+    pro_total = models.PositiveIntegerField(max_length=10, verbose_name="Total")
     prov_id= models.ForeignKey(Proovedor,null=True,blank=True,on_delete=models.CASCADE,verbose_name="Provedor")
    
 
