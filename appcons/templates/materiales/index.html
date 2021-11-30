@@ -5,8 +5,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Compras Realizadas</h3>
-
+          <a href="{% url 'materiales:agregarMaterial' %}" class="btn btn-outline-success" >Nuevo material</a>
           <div class="card-tools">
             
             <div class="input-group input-group-sm" style="width: 800px;">
@@ -19,9 +18,7 @@
             </div>
           </div>
 
-          <div class="input-group input-group-sm col">
-            <a href="{% url 'compras:nuevaCompra' %}" class="btn btn-outline-success" >Nueva Compra</a>
-          </div>
+          
         </div>
         <!-- /.card-header -->
 
@@ -30,21 +27,17 @@
           <table class="table table-head-fixed text-nowrap">
             <thead>
               <tr>
-                <th>FECHA</th>
                 <th>ID</th>
-                <th>USUARIO</th>
-                <th>COSTO TOTAL</th>
-                <th>ACCIONES</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-            {% if compras %}
-                 {% for compra in compras %}
+            {% if materiales %}
+                 {% for material in materiales %}
             <tr>
-                <td>{{compra.co_fechaIngreso}}</td>
-                <td>{{compra.id}}</td>
-                <td>Orlando Diaz</td>
-                <td>{{compra.co_Total}}</td>
+                <td>{{material.id}}</td>
+                <td>{{material.ma_nombre}}</td>
                 <td>
                     <a href="#" class="btn btn-outline-warning" title="Actualizar" ><i class="fas fa-pen-square"  style="font-size: 18px;"></i></a>
                     <a href="#" class="btn btn-outline-danger"  title="Eliminar"><i class="fas fa-trash-alt" style="font-size: 18px;"></i></a>
@@ -62,4 +55,5 @@
       <!-- /.card -->
     </div>
   </div>
+
 {% endblock %}
