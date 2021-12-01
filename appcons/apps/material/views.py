@@ -5,7 +5,7 @@ from apps.material.form import MaterialFroms
 
 
 def indexMateriales(request):
-    materiales = Material.objects.all().order_by('ma_nombre')#se traen los objetos
+    materiales = Material.objects.all().order_by('-id')#se traen los objetos
     context={'materiales':materiales}#se convierte en diccionario y se le pasa al contexto
     return render(request,'materiales/index.html',context)
 

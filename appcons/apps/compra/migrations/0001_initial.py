@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('co_cantidad', models.IntegerField(max_length=11, verbose_name='Cantidad')),
                 ('co_fechaIngreso', models.DateField(verbose_name='FechaIngreso')),
-                ('co_Total', models.IntegerField(max_length=11, verbose_name='Total')),
+                ('co_Total', models.PositiveIntegerField(max_length=11, verbose_name='Total')),
                 ('prov_id', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='proovedor.proovedor')),
             ],
             options={

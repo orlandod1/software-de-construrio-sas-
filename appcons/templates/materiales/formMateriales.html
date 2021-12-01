@@ -2,14 +2,57 @@
 
 {% block content %}
     <div class="container">
-        <form method="post"class="row justify-content-around" >
-            
+        <form method="post" >
+            <button type="submit" class="btn btn-outline-success row m-1" style="max-height: 40px;">Guardar Reguistro</button>
             {%  csrf_token %}<!--token de seguridad-->
-            {{ form.as_p }}<!--se van a pintar los inputs que vienes del back-->
-            
-            <button type="submit" class="btn btn-outline-success row mt-4" style="max-height: 40px;">Agregar</button>
+            {{ form.management_form }}
+            {% for f in form %}
+                <div id="inputForms" class="card" style="padding: 20px;">
+                 {{ f }}<!--se van a pintar los inputs que vienes del back-->
+                </div>
+                <br>
+            {% endfor%}
         </form>
-
-        
+        <button onclick="agregarForms();" type="submit" class="btn btn-outline-info">Agregar otro Material</button>
+        <button onclick="deleteInput();" class="btn btn-outline-danger">Eliminar</button>
     </div>
-{% endblock %}
+
+
+   
+{% endblock content %}
+
+{% block extrajs %}
+        <script>
+            function agregarForms(){
+                var totalForms = document.querySelector("#id_form-TOTAL_FORMS");//se accede al numero total de formularios
+                
+                var nuevoLabel = document.createElement('label');
+                nuevoLabel.id="id_label"+totalForms.value;
+                nuevoLabel.innerHTML = "Ingrese el nombre del material: ";
+                var nuevoInput = document.querySelector("#id_form-0-ma_nombre").cloneNode(true);
+                nuevoInput.name="form-"+totalForms.value+"-ma_nombre";
+                nuevoInput.id="id_form-"+totalForms.value+"-ma_nombre";
+                nuevoInput.required = 'true';
+
+                document.querySelector("#inputForms").appendChild(nuevoLabel);
+                document.querySelector("#inputForms").appendChild(nuevoInput);
+
+                totalForms.value= parseInt(totalForms.value)+1;
+            }
+
+            function deleteInput() {
+                var forms = document.querySelector('#id_form-TOTAL_FORMS');
+                if(forms.value>1){
+                    forms.value = parseInt(forms.value) - 1;
+                    removeLabel = '#id_label'+forms.value;
+                    removeInput = '#id_form-'+forms.value+'-ma_nombre';
+
+                    document.querySelector(removeInput).remove();
+                    document.querySelector(removeLabel).remove();
+                }else{
+                    alert("No se pueden eliminar todos")
+                }
+            
+            }
+        </script>
+{% endblock extrajs %}
