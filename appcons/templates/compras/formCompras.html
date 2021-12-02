@@ -2,16 +2,75 @@
 
 {% block content %}
     <div class="container">
-        <button type="submit" class="btn btn-outline-info row mt-4" style="max-height: 40px;">Agregar producto</button>
+      
 
         <form method="post"class="row justify-content-around" >
             
             {%  csrf_token %}<!--token de seguridad-->
-            {{ form.as_p }}<!--se van a pintar los inputs que vienes del back-->
-            
-            <button type="submit" class="btn btn-outline-success row mt-4" style="max-height: 40px;">Guardar compra</button>
+           
+       
+            <div class="row">
+              
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form2.nombre.name}}">{{form2.nombre.label}}</label>
+                        {{form2.nombre}}
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form2.unidad.name}}">{{form2.unidad.label}}</label>
+                        {{form2.unidad}}
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form2.pro_cantidad.name}}">{{form2.pro_cantidad.label}}</label>
+                        {{form2.pro_cantidad}}
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form2.pro_precio.name}}">{{form2.pro_precio.label}}</label>
+                        {{form2.pro_precio}}
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form2.pro_total.name}}">{{form2.pro_total.label}}</label>
+                        {{form2.pro_total}}
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form2.prov_id.name}}">{{form2.prov_id.label}}</label>
+                        {{form2.prov_id}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form.co_fechaIngreso.name}}">{{form.co_fechaIngreso.label}}</label>
+                        {{form.co_fechaIngreso}}
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{form.co_Total.name}}">{{form.co_Total.label}}</label>
+                        {{form.co_Total}}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-info row mt-4" style="max-height: 40px;">Agregar producto</button>
+            <button type="submit" class="btn btn-success row mt-4" style="max-height: 40px;">Guardar compra</button>
         </form>
 
         
     </div>
 {% endblock %}
+
+<!-- {{ form.as_p }}se van a pintar los inputs que vienes del back-->
+            
+<!--{{ form2.as_p }}se van a pintar los inputs que vienes del back -->

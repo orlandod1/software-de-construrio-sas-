@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Productos Ingresados</h3>
+
+          <div class="card-tools">
+            
+            <div class="input-group input-group-sm" style="width: 800px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Buscar ....">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                  <i class="fas fa-search" style="font-size: 17px;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.card-header -->
+
+        
+        <div class="card-body table-responsive p-0" style="height: 400px;">
+          <table class="table table-head-fixed text-nowrap">
+            <thead>
+              <tr>
+                <th>FECHA DE LA COMPRA</th> 
+                <th>NOMBRE</th>
+                <th>UNIDAD</th>
+                <th>CANTIDAD</th>
+                <th>PRECIO UNITARIO</th>
+                <th>TOTAL</th>
+                <th>PROVEEDOR</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% if productos %}
+                 {% for producto in productos %}
+            <tr>
+                <td>{{producto.compra}}</td>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.unidad}}</td>
+                <td>{{producto.pro_cantidad}}</td>
+                <td>{{producto.pro_precio}}</td>
+                <td>{{producto.pro_total}}</td> 
+                <td>{{producto.prov_id}}</td>
+                <td>
+                    <a href="#" class="btn btn-outline-warning" title="Actualizar" ><i class="fas fa-pen-square"  style="font-size: 18px;"></i></a>
+                    <a href="#" class="btn btn-outline-danger"  title="Eliminar"><i class="fas fa-trash-alt" style="font-size: 18px;"></i></a>
+                    <a href="#" class="btn btn-outline-info"    title="Ver Detalles"><i class="fas fa-eye" style="font-size: 18px;"></i></a>
+                </td>
+            </tr>
+                {% endfor%}
+            {%endif%}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+        
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{% endblock %}

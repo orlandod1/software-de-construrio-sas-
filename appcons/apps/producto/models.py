@@ -7,8 +7,8 @@ from apps.proovedor.models import Proovedor
 # Create your models here.
 
 class Producto  (models.Model):
-    nombre= models.ForeignKey(Material,null=True,blank=True,on_delete=models.CASCADE)
     compra = models.ForeignKey(Compra,null=True,blank=True,on_delete=models.CASCADE)
+    nombre= models.ForeignKey(Material,null=True,blank=True,on_delete=models.CASCADE)
     unidad = models.ForeignKey(Unidad,null=True,blank=True,on_delete=models.CASCADE)
     pro_cantidad = models.PositiveIntegerField(max_length=10, verbose_name="Cantidad")
     pro_precio = models.PositiveIntegerField(max_length=10, verbose_name="Precio")
