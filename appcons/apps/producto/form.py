@@ -30,7 +30,7 @@ class ProductosForm(forms.ModelForm):
             'nombre':forms.Select(attrs={'class':'form-control'}),
             'compra':forms.Select(attrs={'class':'form-control'}),
             'unidad':forms.Select(attrs={'class':'form-control'}),
-            'pro_cantidad':forms.TextInput(attrs={'class':'form-control'}),
+            'pro_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'pro_precio':forms.NumberInput(attrs={'class':'form-control'}),
             'pro_total':forms.NumberInput(attrs={'class':'form-control'}),
             'prov_id':forms.Select(attrs={'class':'form-control'}),

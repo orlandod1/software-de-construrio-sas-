@@ -29,6 +29,7 @@
                 var nuevoLabel = document.createElement('label');
                 nuevoLabel.id="id_label"+totalForms.value;
                 nuevoLabel.innerHTML = "Ingrese el nombre del material: ";
+                
                 var nuevoInput = document.querySelector("#id_form-0-ma_nombre").cloneNode(true);
                 nuevoInput.name="form-"+totalForms.value+"-ma_nombre";
                 nuevoInput.id="id_form-"+totalForms.value+"-ma_nombre";

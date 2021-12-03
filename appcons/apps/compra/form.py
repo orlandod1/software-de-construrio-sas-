@@ -15,7 +15,7 @@ class ComprasForm(forms.ModelForm):
         }
 
         labels={
-            'co_fechaIngreso':'fecha de la compra',
+            'co_fechaIngreso':'Fecha de la compra',
             'co_Total':'Costo total'
             
         }

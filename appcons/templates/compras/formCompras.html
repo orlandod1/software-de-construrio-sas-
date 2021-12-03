@@ -5,72 +5,158 @@
       
 
         <form method="post"class="row justify-content-around" >
-            
-            {%  csrf_token %}<!--token de seguridad-->
-           
-       
-            <div class="row">
-              
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form2.nombre.name}}">{{form2.nombre.label}}</label>
-                        {{form2.nombre}}
-                    </div>
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form2.unidad.name}}">{{form2.unidad.label}}</label>
-                        {{form2.unidad}}
-                    </div>
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form2.pro_cantidad.name}}">{{form2.pro_cantidad.label}}</label>
-                        {{form2.pro_cantidad}}
-                    </div>
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form2.pro_precio.name}}">{{form2.pro_precio.label}}</label>
-                        {{form2.pro_precio}}
-                    </div>
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form2.pro_total.name}}">{{form2.pro_total.label}}</label>
-                        {{form2.pro_total}}
-                    </div>
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form2.prov_id.name}}">{{form2.prov_id.label}}</label>
-                        {{form2.prov_id}}
-                    </div>
-                </div>
+         {%  csrf_token %}<!--token de seguridad-->
 
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form.co_fechaIngreso.name}}">{{form.co_fechaIngreso.label}}</label>
+         <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                    <!--fecha dela compra-->
+                    <div class="form-group card-title d-flex">
+                        <label class="col-6 mt-1" for="{{form.co_fechaIngreso.name}}">{{form.co_fechaIngreso.label}}</label>
                         {{form.co_fechaIngreso}}
                     </div>
-                </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="{{form.co_Total.name}}">{{form.co_Total.label}}</label>
-                        {{form.co_Total}}
+  
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm mt-1s" style="width: 150px;">
+                        <button type="submit" class="btn btn-success" style="max-height: 40px;">Guardar compra</button>
                     </div>
+                  </div>
                 </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                  <table class="table table-hover text-nowrap" id="tablaProductos">
+                    <thead>
+                      <tr>
+                        <th>Proveedor</th>
+                        <th>Producto</th>
+                        <th>Unidad</th>
+                        <th>Precio unitario</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        {{ form2.management_form }}<!--administra todos los froms que se creen-->
+                        {% for f2 in form2 %}
+                      <tr>
+                        <td>
+                            <!--input del provedor-->
+                            {{f2.prov_id}}
+                        </td>
+                        <td>
+                            <!--input nombre del producto-->
+                            {{f2.nombre}}
+                        </td>
+                        <td>
+                            <!--input de unidad-->
+                                {{f2.unidad}}
+                        </td>
+                        <td>
+                            <!--input del precio unitario-->
+                            {{f2.pro_precio}}
+                        </td>
+                        <td>
+                            <!--input de la cantidad-->
+                            {{f2.pro_cantidad}}
+                        </td>
+                        <td>
+                            <!--input del total-->
+                            {{f2.pro_total}}
+                        </td>
+                        {% endfor %}
+                      </tr>
+                    </tbody>
+                    <tfoot class="justify-content-end">
+                        <td colspan="6">
+                           <span  class="d-flex justify-content-end" >
+                            <div class="d-flex col-md-3 col-md-offset-2">
+                                    <label class="col mt-1" for="{{form.co_Total.name}}">{{form.co_Total.label}}</label>
+                                    {{form.co_Total}}
+                            </div>
+                           </span> 
+                        </td>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
             </div>
-            <button type="submit" class="btn btn-info row mt-4" style="max-height: 40px;">Agregar producto</button>
-            <button type="submit" class="btn btn-success row mt-4" style="max-height: 40px;">Guardar compra</button>
+          </div>  
         </form>
-
-        
+        <button onclick="agregarFormsProducto();" class="btn btn-info" style="max-height: 40px;">Agregar producto</button>
     </div>
 {% endblock %}
 
 <!-- {{ form.as_p }}se van a pintar los inputs que vienes del back-->
             
 <!--{{ form2.as_p }}se van a pintar los inputs que vienes del back -->
+
+
+{% block extrajs %}
+    <script>
+      document.querySelector("#id_form-0-pro_total").value=0;
+      document.querySelector("#id_co_Total").value=0;
+        function agregarFormsProducto(){
+          var totalForms = document.querySelector('#id_form-TOTAL_FORMS');
+          //nuevo input para provedores
+          var nuevoInputProvedores = document.querySelector("#id_form-0-prov_id").cloneNode(true);
+          nuevoInputProvedores.name= "form-"+totalForms.value+"-prov_id";
+          nuevoInputProvedores.id  = "id_form-"+totalForms.value+"-prov_id";
+          //nuevo input para producto
+          var nuevoInputProducto = document.querySelector("#id_form-0-nombre").cloneNode(true);
+          nuevoInputProducto.name= "form-"+totalForms.value+"-nombre";
+          nuevoInputProducto.id  = "id_form-"+totalForms.value+"-nombre";
+          //nuevo input para unidad
+          var nuevoInputUnidad = document.querySelector("#id_form-0-unidad").cloneNode(true);
+          nuevoInputUnidad.name= "form-"+totalForms.value+"-unidad";
+          nuevoInputUnidad.id  = "id_form-"+totalForms.value+"-unidad";
+          //nuevo input para precio unitario
+          var nuevoInputPrecio = document.querySelector("#id_form-0-pro_precio").cloneNode(true);
+          nuevoInputPrecio.name= "form-"+totalForms.value+"-pro_precio";
+          nuevoInputPrecio.id  = "id_form-"+totalForms.value+"-pro_precio";
+          //nuevo input para cantidad
+          var nuevoInputCantidad = document.querySelector("#id_form-0-pro_cantidad").cloneNode(true);
+          nuevoInputCantidad.name= "form-"+totalForms.value+"-pro_cantidad";
+          nuevoInputCantidad.id  = "id_form-"+totalForms.value+"-pro_cantidad";
+          //nuevo input para subtotal
+          var nuevoInputSubtotal = document.querySelector("#id_form-0-pro_total").cloneNode(true);
+          nuevoInputSubtotal.name= "form-"+totalForms.value+"-pro_total";
+          nuevoInputSubtotal.id  = "id_form-"+totalForms.value+"-pro_total";
+
+          totalForms.value = parseInt(totalForms.value)+1;
+
+          var tbody = document.querySelector("#tbody");
+          var tr    = document.createElement("tr");//nueva fila
+
+          var tdProvedores = document.createElement("td");//se crea la columna
+          tdProvedores.appendChild(nuevoInputProvedores);
+          tr.appendChild(tdProvedores);
+
+          var tdProductos = document.createElement("td");
+          tdProductos.appendChild(nuevoInputProducto);
+          tr.appendChild(tdProductos)
+
+          var tdUnidad = document.createElement("td");
+          tdUnidad.appendChild(nuevoInputUnidad);
+          tr.appendChild(tdUnidad)
+
+          var tdPrecio = document.createElement("td");
+          tdPrecio.appendChild(nuevoInputPrecio);
+          tr.appendChild(tdPrecio);
+
+          var tdCantidad = document.createElement("td");
+          tdCantidad.appendChild(nuevoInputCantidad);
+          tr.appendChild(tdCantidad)
+
+          var tdsubTotal = document.createElement("td");
+          tdsubTotal.appendChild(nuevoInputSubtotal);
+          tr.appendChild(tdsubTotal)
+
+          tbody.appendChild(tr)
+         
+
+        }
+    </script>
+{% endblock extrajs %}
