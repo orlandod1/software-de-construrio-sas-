@@ -116,10 +116,12 @@
           var nuevoInputPrecio = document.querySelector("#id_form-0-pro_precio").cloneNode(true);
           nuevoInputPrecio.name= "form-"+totalForms.value+"-pro_precio";
           nuevoInputPrecio.id  = "id_form-"+totalForms.value+"-pro_precio";
+          nuevoInputPrecio.value='';
           //nuevo input para cantidad
           var nuevoInputCantidad = document.querySelector("#id_form-0-pro_cantidad").cloneNode(true);
           nuevoInputCantidad.name= "form-"+totalForms.value+"-pro_cantidad";
           nuevoInputCantidad.id  = "id_form-"+totalForms.value+"-pro_cantidad";
+          nuevoInputCantidad.value='';
           //nuevo input para subtotal
           var nuevoInputSubtotal = document.querySelector("#id_form-0-pro_total").cloneNode(true);
           nuevoInputSubtotal.name= "form-"+totalForms.value+"-pro_total";
