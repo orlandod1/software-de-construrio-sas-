@@ -1,7 +1,7 @@
-document.querySelector("#id_form-0-pro_total").value=0;
-document.querySelector("#id_co_Total").value=0;
+//document.querySelector("#id_form-0-pro_total").value=0;
 
     function agregarFormsProducto(){
+      
         var totalForms = document.querySelector('#id_form-TOTAL_FORMS');
         //nuevo input para provedores
         var nuevoInputProvedores = document.querySelector("#id_form-0-prov_id").cloneNode(true);

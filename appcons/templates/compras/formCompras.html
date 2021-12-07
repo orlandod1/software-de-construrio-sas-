@@ -37,6 +37,7 @@
                     <tbody id="tbody">
                         {{ form2.management_form }}<!--administra todos los froms que se creen-->
                         {% for f2 in form2 %}
+                          {{f2.id}}
                       <tr>
                         <td>
                             <!--input del provedor-->
@@ -97,6 +98,6 @@
 {% block extrajs %}
   <script src="{% static 'src/js/calcularCostoCompra.js' %}"></script>
     <script>
-      
+     
    </script>
 {% endblock extrajs %}
