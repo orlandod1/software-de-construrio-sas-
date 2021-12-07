@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from apps.material.models import Material
 from apps.producto.models import Producto
 from apps.producto.form import ProductosForm
 
@@ -9,13 +10,9 @@ def indexProducto(request):
     context = {'productos':productos}
     return render(request,'productos/index.html',context)
 
-
-def nuevoProducto(request):
-    if(request.method == 'POST'):
-        form = ProductosForm(request.POST)
-        if(form.is_valid()):
-            form.save()
-        return redirect('productos:indexProducto')
-    else:
-        form= ProductosForm()
-    return render(request,'productos/ProductosForm.html',{'form':form})
+def buscarProducto(request):
+   termino = request.GET['termino']
+   material = Material.objects.get(ma_nombre=termino)
+   productos = Producto.objects.filter(nombre=material.id)
+   context = {'productos':productos}
+   return render(request,'productos/index.html',context)
