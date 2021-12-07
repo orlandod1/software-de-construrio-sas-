@@ -1,9 +1,7 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block content %}
     <div class="container">
-      
-
         <form method="post"class="row justify-content-around" >
          {%  csrf_token %}<!--token de seguridad-->
 
@@ -85,8 +83,10 @@
             </div>
           </div>  
         </form>
+        <button onclick="eliminarFormsProducto();" class="btn btn-warning">Quitar Ultimo producto</button>
         <button onclick="agregarFormsProducto();" class="btn btn-info" style="max-height: 40px;">Agregar producto</button>
     </div>
+    
 {% endblock %}
 
 <!-- {{ form.as_p }}se van a pintar los inputs que vienes del back-->
@@ -95,10 +95,11 @@
 
 
 {% block extrajs %}
+  <script src="{% static 'src/js/calcularCostoCompra.js' %}"></script>
     <script>
       document.querySelector("#id_form-0-pro_total").value=0;
       document.querySelector("#id_co_Total").value=0;
-        function agregarFormsProducto(){
+      function agregarFormsProducto(){
           var totalForms = document.querySelector('#id_form-TOTAL_FORMS');
           //nuevo input para provedores
           var nuevoInputProvedores = document.querySelector("#id_form-0-prov_id").cloneNode(true);
@@ -122,11 +123,12 @@
           nuevoInputCantidad.name= "form-"+totalForms.value+"-pro_cantidad";
           nuevoInputCantidad.id  = "id_form-"+totalForms.value+"-pro_cantidad";
           nuevoInputCantidad.value='';
+          nuevoInputCantidad.addEventListener('keyup',CalcularSubtotal,false)
           //nuevo input para subtotal
           var nuevoInputSubtotal = document.querySelector("#id_form-0-pro_total").cloneNode(true);
           nuevoInputSubtotal.name= "form-"+totalForms.value+"-pro_total";
           nuevoInputSubtotal.id  = "id_form-"+totalForms.value+"-pro_total";
-
+          nuevoInputSubtotal.value='0';
           totalForms.value = parseInt(totalForms.value)+1;
 
           var tbody = document.querySelector("#tbody");
@@ -160,5 +162,57 @@
          
 
         }
-    </script>
+      
+      function eliminarFormsProducto(){
+        var forms = document.querySelector('#id_form-TOTAL_FORMS');
+                if(forms.value>1){
+                  forms.value = parseInt(forms.value) - 1;
+                  var tbody = document.querySelector("#tbody");
+                  var lastTr = tbody.lastChild;
+                  tbody.removeChild(lastTr);
+                  CalcularTotal() 
+                }else{
+                    alert("No se pueden eliminar todos")
+                }
+      }
+
+      function eliminar(input) {
+        document.querySelector(input).remove();
+      }
+
+
+      var Cantidad = document.querySelector("#id_form-0-pro_cantidad");
+      Cantidad.addEventListener('keyup',CalcularSubtotal,false)
+    
+      function CalcularSubtotal(){
+        var idCantidad=event.path[0].id// se trae el input que acciona el evento
+        var idPrecio = idCantidad.substr(0,9)+'-pro_precio'
+          console.log('cantidad :'+idCantidad)
+          console.log('precio: '+idPrecio)
+        var idSubTotal = idCantidad.substr(0,9)+'-pro_total';//se añade para traer el id del pro_total  
+          
+          var Cantidad2 = document.querySelector("#"+idCantidad);
+          var precio =    document.querySelector("#"+idPrecio);
+          var subtotal = document.querySelector("#"+idSubTotal);
+
+          if(Cantidad2.value && precio.value){
+            subtotal.value = parseInt(Cantidad2.value) * parseInt(precio.value);
+            CalcularTotal() 
+            /*var total=document.querySelector("#id_co_Total");
+            total.value = parseInt(total.value)+parseInt(subtotal.value);*/
+          }
+      }
+
+      function CalcularTotal() {
+        var forms = document.querySelector('#id_form-TOTAL_FORMS');
+        var total=document.querySelector("#id_co_Total");
+        total.value=0;
+        var subTotal;
+        for(var i=0; i<forms.value; i++){
+          subTotal = document.querySelector("#id_form-"+i+"-pro_total");
+          total.value = parseInt(total.value)+parseInt(subTotal.value);
+          
+        }
+      }
+   </script>
 {% endblock extrajs %}

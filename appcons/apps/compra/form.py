@@ -22,5 +22,5 @@ class ComprasForm(forms.ModelForm):
 
         widgets={
             'co_fechaIngreso':DateInput(attrs={'class':'form-control'}),
-            'co_Total':forms.NumberInput(attrs={'class':'form-control'}),
+            'co_Total':forms.NumberInput(attrs={'class':'form-control','readonly':'readonly'}),
         }

@@ -27,17 +27,16 @@ def nuevaCompra(request):
         form=ComprasForm(request.POST,request.FILES)
         if form2.is_valid() and form.is_valid():
             compra = form.save(commit=False)#se hace un guardado falso
-
+            compra.co_Total=0
             for f2 in form2:#se guarda el costo total de la compra respecto alos produtos
-                producto = f2.save(commit=False)#se hace un guardado falso
-                producto.pro_total=producto.pro_cantidad*producto.pro_precio
-                compra.co_Total=compra.co_Total+producto.pro_total
-
+                producto1 = f2.save(commit=False)#se hace un guardado falso
+                producto1.pro_total=producto1.pro_cantidad*producto1.pro_precio
+                compra.co_Total+=producto1.pro_total
+                
             compra.save()# se guarda esa compra
             for f in form2:
                 producto = f.save(commit=False)#se hace un guardado falso
                 producto.compra = compra#se le asigna el id de la compra a todos los productos
-                producto.pro_total=producto.pro_cantidad*producto.pro_precio
                 producto.save()# se guarda esa uno por uno esos productos
             return redirect('productos:indexProducto')#se redirecciona al index de producto
     else:

@@ -1,3 +1,4 @@
+
 from django import forms
 from apps.producto.models import Producto
 
@@ -27,12 +28,12 @@ class ProductosForm(forms.ModelForm):
         }
 
         widgets={
-            'nombre':forms.Select(attrs={'class':'form-control'}),
-            'compra':forms.Select(attrs={'class':'form-control'}),
-            'unidad':forms.Select(attrs={'class':'form-control'}),
-            'pro_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
-            'pro_precio':forms.NumberInput(attrs={'class':'form-control'}),
-            'pro_total':forms.NumberInput(attrs={'class':'form-control'}),
-            'prov_id':forms.Select(attrs={'class':'form-control'}),
+            'nombre':forms.Select(attrs={'class':'form-control','required':'true'}),
+            'compra':forms.Select(attrs={'class':'form-control','required':'true'}),
+            'unidad':forms.Select(attrs={'class':'form-control','required':'true'}),
+            'pro_cantidad':forms.NumberInput(attrs={'class':'form-control','required':'true'}),
+            'pro_precio':forms.NumberInput(attrs={'class':'form-control','required':'true'}),
+            'pro_total':forms.NumberInput(attrs={'class':'form-control','readonly':'readonly'}),
+            'prov_id':forms.Select(attrs={'class':'form-control','required':'true'}),
         
         }

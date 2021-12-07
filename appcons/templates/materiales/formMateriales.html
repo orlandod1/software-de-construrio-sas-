@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <form method="post" >
-            <button type="submit" class="btn btn-outline-success row m-1" style="max-height: 40px;">Guardar Reguistro</button>
+            <button type="submit" class="btn btn-success row m-1" style="max-height: 40px;">Guardar Registro</button>
             {%  csrf_token %}<!--token de seguridad-->
             {{ form.management_form }}
             {% for f in form %}
@@ -13,8 +13,8 @@
                 <br>
             {% endfor%}
         </form>
-        <button onclick="agregarForms();" type="submit" class="btn btn-outline-info">Agregar otro Material</button>
-        <button onclick="deleteInput();" class="btn btn-outline-danger">Eliminar</button>
+        <button onclick="agregarForms();" type="submit" class="btn btn-info">Agregar otro Material</button>
+        <button onclick="deleteInput();" class="btn btn-danger">Eliminar</button>
     </div>
 
 
@@ -33,7 +33,7 @@
                 var nuevoInput = document.querySelector("#id_form-0-ma_nombre").cloneNode(true);
                 nuevoInput.name="form-"+totalForms.value+"-ma_nombre";
                 nuevoInput.id="id_form-"+totalForms.value+"-ma_nombre";
-                nuevoInput.value='';
+                nuevoInput.value='';//input vacio
                 nuevoInput.required = 'true';
 
                 document.querySelector("#inputForms").appendChild(nuevoLabel);
