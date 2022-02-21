@@ -5,6 +5,7 @@ from apps.compra.models import Compra
 class MembershipInline(admin.TabularInline):
     model = Producto
     extra = 1
+    
 
 class CompraAdmin(admin.ModelAdmin):
     inlines = (MembershipInline,)

@@ -1,0 +1,86 @@
+{% load static %} {% block content %}
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'src/login/css/style.css'%}" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'src/login/css/bootstrap.min.css'%}"
+    />
+    <title>Bienvenido de nuevo</title>
+  </head>
+  <body>
+    
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">INGRESE SUS DATOS PARA LOGEARTE A CONSTRURIO</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+              <div
+                class="img"
+                style="background-image: url(images/bg-1.jpg);"
+              ></div>
+              <div text-align ="justify-content-center class="login-wrap p-4 p-md-5">
+       
+                <form action="" method="post"class="signin-form">
+     
+                  {% csrf_token %} 
+                     
+                  <div class="form-group mb-3">
+                    <label class="col-6 mt-1" for="id_username">
+                      {{form.username.label}}
+                    </label>
+                    <div>{{form.username}}</div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="password">Password</label>
+                    <div>{{form.password}}</div>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="form-control btn btn-primary rounded submit px-3"
+                    >Ingresar
+                    </button>
+                  </div>
+                  <div class="form-group d-md-flex">
+                    <div class="w-50 text-left">
+                    
+                    </div>
+                   
+                  </div>
+                </form>
+                
+                  <div class="input-group input-group-sm col">
+           
+                    <a href="{% url 'compras:registro' %}" class="btn btn-success">
+                     registrarse
+                    </a>
+                   
+                  </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  {% endblock content %} {% block extrajs %}
+  <script src="{% static 'src/login/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'src/login/js/jquery.min.js' %}"></script>
+  <script src="{% static 'src/login/js/main.js' %}"></script>
+  <script src="{% static 'src/login/js/popper.min.js' %}"></script>
+  <script></script>
+  {% endblock extrajs %}
+</html>

@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %} {% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <h3>¿Estas seguro que deseas eliminar la compra {{ compra.id}} ?</h3>
+  <button class="btn btn-danger" type="submit">Si, deseo eliminar</button>
+  <button class="btn btn-primary" href="{% url 'compras:compraindex'}">
+    Cancelar
+  </button>
+</form>
+
+{% endblock %}

@@ -1,102 +1,131 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content %}
-    <div class="container">
-        <form method="post"class="row justify-content-around" >
-         {%  csrf_token %}<!--token de seguridad-->
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <form method="post" class="row justify-content-around">
+    {% csrf_token %}
+    <!--token de seguridad-->
 
-         <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                    <!--fecha dela compra-->
-                    <div class="form-group card-title d-flex">
-                        <label class="col-6 mt-1" for="{{form.co_fechaIngreso.name}}">{{form.co_fechaIngreso.label}}</label>
-                        {{form.co_fechaIngreso}}
-                    </div>
-  
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm mt-1s" style="width: 150px;">
-                        <button type="submit" class="btn btn-success" style="max-height: 40px;">Guardar compra</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap" id="tablaProductos">
-                    <thead>
-                      <tr>
-                        <th>Proveedor</th>
-                        <th>Producto</th>
-                        <th>Unidad</th>
-                        <th>Precio unitario</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        {{ form2.management_form }}<!--administra todos los froms que se creen-->
-                        {% for f2 in form2 %}
-                      <tr>
-                        <td>
-                            <!--input del provedor-->
-                            {{f2.prov_id}}
-                        </td>
-                        <td>
-                            <!--input nombre del producto-->
-                            {{f2.nombre}}
-                        </td>
-                        <td>
-                            <!--input de unidad-->
-                                {{f2.unidad}}
-                        </td>
-                        <td>
-                            <!--input del precio unitario-->
-                            {{f2.pro_precio}}
-                        </td>
-                        <td>
-                            <!--input de la cantidad-->
-                            {{f2.pro_cantidad}}
-                        </td>
-                        <td>
-                            <!--input del total-->
-                            {{f2.pro_total}}
-                        </td>
-                        {% endfor %}
-                      </tr>
-                    </tbody>
-                    <tfoot class="justify-content-end">
-                        <td colspan="6">
-                           <span  class="d-flex justify-content-end" >
-                            <div class="d-flex col-md-3 col-md-offset-2">
-                                    <label class="col mt-1" for="{{form.co_Total.name}}">{{form.co_Total.label}}</label>
-                                    {{form.co_Total}}
-                            </div>
-                           </span> 
-                        </td>
-                    </tfoot>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <!--fecha dela compra-->
+            <div class="form-group card-title d-flex">
+              <label class="col-6 mt-1" for="{{form.co_fechaIngreso.name}}">
+                {{form.co_fechaIngreso.label}}
+              </label>
+              {{form.co_fechaIngreso}}
             </div>
-          </div>  
-        </form>
-        <button onclick="eliminarFormsProducto();" class="btn btn-warning">Quitar Ultimo producto</button>
-        <button onclick="agregarFormsProducto();" class="btn btn-info" style="max-height: 40px;">Agregar producto</button>
+
+            <div class="card-tools">
+              <div
+                class="input-group input-group-sm mt-1s"
+                style="width: 150px;"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  style="max-height: 40px;"
+                >
+                  Guardar compra
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap" id="tablaProductos">
+              <thead>
+                <tr>
+                  <th>Proveedor</th>
+                  <th>Producto</th>
+                  <th>Unidad</th>
+                  <th>Precio unitario</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                {{ form2.management_form }}
+                <!--administra todos los froms que se creen-->
+                {% for f2 in form2 %}
+                <tr>
+                  <td>
+                    <!--input del provedor-->
+                    {{f2.prov_id}}
+                  </td>
+                  <td>
+                    <!--input nombre del producto-->
+                    {{f2.nombre}}
+
+                    <input
+                      type="text"
+                      list="listaProductos"
+                      placeholder="buscar producto"
+                    />
+                    <datalist id="listaProductos">
+                    {% for p in productos %}
+                        <option value="{{p.ma_nombre}}">
+                    {% endfor %}
+                    <datalist>
+
+                  </td>
+                  <td>
+                    <!--input de unidad-->
+                    {{f2.unidad}}
+                  </td>
+                  <td>
+                    <!--input del precio unitario-->
+                    {{f2.pro_precio}}
+                  </td>
+                  <td>
+                    <!--input de la cantidad-->
+                    {{f2.pro_cantidad}}
+                  </td>
+                  <td>
+                    <!--input del total-->
+                    {{f2.pro_total}}
+                  </td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+              <tfoot class="justify-content-end">
+                <td colspan="6">
+                  <span class="d-flex justify-content-end">
+                    <div class="d-flex col-md-3 col-md-offset-2">
+                      <label class="col mt-1" for="{{form.co_Total.name}}">
+                        {{form.co_Total.label}}
+                      </label>
+                      {{form.co_Total}}
+                    </div>
+                  </span>
+                </td>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
     </div>
-    
+  </form>
+  <button onclick="eliminarFormsProducto();" class="btn btn-warning">
+    Quitar Ultimo producto
+  </button>
+  <button
+    onclick="agregarFormsProducto();"
+    class="btn btn-info"
+    style="max-height: 40px;"
+  >
+    Agregar producto
+  </button>
+</div>
+
 {% endblock %}
 
 <!-- {{ form.as_p }}se van a pintar los inputs que vienes del back-->
-            
+
 <!--{{ form2.as_p }}se van a pintar los inputs que vienes del back -->
 
-
 {% block extrajs %}
-  <script src="{% static 'src/js/calcularCostoCompra.js' %}"></script>
-    <script>
-      
-   </script>
+<script src="{% static 'src/js/calcularCompra.js' %}"></script>
 {% endblock extrajs %}

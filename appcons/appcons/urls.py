@@ -17,9 +17,11 @@ from django import urls
 from django.contrib import admin
 from django.urls import path , include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('apps.compra.urls', namespace ="compras")),
     path('materiales/',include('apps.material.urls',namespace="materiales")),
-     path('productos/',include('apps.producto.urls',namespace="productos"))
+    path('productos/',include('apps.producto.urls',namespace="productos")),
+    path('accounts/',include('django.contrib.auth.urls'))
 ]

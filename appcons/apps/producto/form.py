@@ -1,4 +1,7 @@
 
+import imp
+from logging import PlaceHolder
+from operator import imod
 from django import forms
 from apps.producto.models import Producto
 
@@ -7,7 +10,7 @@ class ProductosForm(forms.ModelForm):
         model=Producto
 
         fields={
-            'nombre',
+            'nombre',   
             'compra',
             'unidad',
             'pro_cantidad',
@@ -29,7 +32,7 @@ class ProductosForm(forms.ModelForm):
 
         widgets={
             'nombre':forms.Select(attrs={'class':'form-control','required':'true'}),
-            'compra':forms.Select(attrs={'class':'form-control','required':'true'}),
+            'compra':forms.Select(attrs={'class':'form-control','required':'true'}),#size 5 y que este de tipo text
             'unidad':forms.Select(attrs={'class':'form-control','required':'true'}),
             'pro_cantidad':forms.NumberInput(attrs={'class':'form-control','required':'true'}),
             'pro_precio':forms.NumberInput(attrs={'class':'form-control','required':'true'}),

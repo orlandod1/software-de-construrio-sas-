@@ -1,0 +1,92 @@
+
+{% load static %} {% block content %}
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'src/login/css/style.css'%}" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'src/login/css/bootstrap.min.css'%}"
+    />
+    <title>Bienvenido de nuevo</title>
+  </head>
+  <body>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">INGRESE SUS DATOS PARA REGISTRARTE EN EL SISTEMA</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+              <div
+                class="img"
+                style="background-image: url(images/bg-1.jpg);"
+              ></div>
+              <div text-align ="justify-content-center" class="login-wrap p-4 p-md-5">
+                
+                <form action="" method="post"class="signin-form">
+                  {% csrf_token %} 
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Correo</label>
+                      <div>{{form.email}}</div>
+                    
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Usuario</label>
+                      <div>{{form.username}}</div>
+                    
+                  </div>
+                  <div class="form-group mb-3">
+                    
+                    <label class="col-6 mt-1" for="{{form.password1.label}}">
+                      {{form.password1.label}}
+                    </label>
+                      <div>{{form.password1}}<s/div>
+                    
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Confirmar Constraseña</label>
+                    <div>{{form.password2}}</div>
+                    
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Nombres</label>
+                      <div>{{form.first_name}}</div>
+                    
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Apellidos</label>
+                      <div>{{form.last_name}}</div>
+                    
+                  </div>
+                  <div>
+                   
+                
+                    <button href ="#"class=" btn btn-success" type ="submit">registrarse</button>
+                  </div>
+                 
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  {% endblock content %} {% block extrajs %}
+  <script src="{% static 'src/login/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'src/login/js/jquery.min.js' %}"></script>
+  <script src="{% static 'src/login/js/main.js' %}"></script>
+  <script src="{% static 'src/login/js/popper.min.js' %}"></script>
+  <script></script>
+  {% endblock extrajs %}
+</html>

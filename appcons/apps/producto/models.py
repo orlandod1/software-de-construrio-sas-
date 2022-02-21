@@ -12,7 +12,7 @@ class Producto  (models.Model):
     unidad = models.ForeignKey(Unidad,null=True,blank=True,on_delete=models.CASCADE)
     pro_cantidad = models.PositiveIntegerField(max_length=10, verbose_name="Cantidad")
     pro_precio = models.PositiveIntegerField(max_length=10, verbose_name="Precio")
-    pro_total = models.PositiveIntegerField(max_length=10, verbose_name="Total")
+    pro_total = models.PositiveIntegerField(max_length=10, verbose_name="Subtotal")
     prov_id= models.ForeignKey(Proovedor,null=True,blank=True,on_delete=models.CASCADE,verbose_name="Provedor")
    
 
