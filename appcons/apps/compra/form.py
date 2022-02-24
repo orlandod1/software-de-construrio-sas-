@@ -33,7 +33,7 @@ class CustomUserCreationForm(UserCreationForm):
         }
 
         widgets={
-            'username': forms.TextInput(attrs={'class':'form-control ','required':'true'}),
+            'username': forms.TextInput(attrs={'class':'form-control ','required':'true',}),
             'password1': forms.PasswordInput(attrs={'class':'form-control','required':'true'}),
             'password2': forms.PasswordInput(attrs={'class':'form-control','required':'true'}),
             'first_name': forms.TextInput(attrs={'class':'form-control','required':'true'}),
@@ -56,6 +56,6 @@ class ComprasForm(forms.ModelForm):
         }
 
         widgets={
-            'co_fechaIngreso':DateInput(attrs={'class':'form-control','pattern':'[0-9]{4}-[0-9]{2}-[0-9]{2}'}),
+            'co_fechaIngreso':DateInput(attrs={'class':'form-control'}, format='%Y-%m-%d'),
             'co_Total':forms.NumberInput(attrs={'class':'form-control','readonly':'readonly'}),
         }

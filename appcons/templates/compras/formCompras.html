@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %} {% load static %} {% block content %}
+
 <div class="container">
   <form method="post" class="row justify-content-around">
     {% csrf_token %}
@@ -36,8 +37,8 @@
             <table class="table table-hover text-nowrap" id="tablaProductos">
               <thead>
                 <tr>
-                  <th>Proveedor</th>
                   <th>Producto</th>
+                  <th>Proveedor</th>
                   <th>Unidad</th>
                   <th>Precio unitario</th>
                   <th>Cantidad</th>
@@ -51,23 +52,11 @@
                 <tr>
                   <td>
                     <!--input del provedor-->
-                    {{f2.prov_id}}
+                    {{f2.nombre}}
                   </td>
                   <td>
                     <!--input nombre del producto-->
-                    {{f2.nombre}}
-
-                    <input
-                      type="text"
-                      list="listaProductos"
-                      placeholder="buscar producto"
-                    />
-                    <datalist id="listaProductos">
-                    {% for p in productos %}
-                        <option value="{{p.ma_nombre}}">
-                    {% endfor %}
-                    <datalist>
-
+                    {{f2.prov_id}}
                   </td>
                   <td>
                     <!--input de unidad-->
@@ -118,6 +107,20 @@
   >
     Agregar producto
   </button>
+  <!-- CDN DE JQUERY Y SCRIPT DEL SELECT2 -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <!-- EN ESTE QUERY SE LLAMA LOS SELECT QUE ESTAN DENOMINADOS COMO SELECT2 Y AUTOMATICAMENTE SE PONEN COMO SELECT2 -->
+
+  <script>
+    $('.select2').select2({
+      dropdownAutoWidth: true,
+      width: '100%',
+      placeholder: 'Selecciona lo que deseas',
+    })
+  </script>
 </div>
 
 {% endblock %}
@@ -127,5 +130,10 @@
 <!--{{ form2.as_p }}se van a pintar los inputs que vienes del back -->
 
 {% block extrajs %}
+<!-- <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+<script src="{% static 'admin/js/vendor/select2/select2.full.js' %}"></script>
+<script src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script src="{% static 'admin/js/autocomplete.js' %}"></script> -->
+
 <script src="{% static 'src/js/calcularCompra.js' %}"></script>
 {% endblock extrajs %}

@@ -1,6 +1,5 @@
-from email import message
-from pyexpat import model
-from pyexpat.errors import messages
+from django.contrib import messages
+
 from re import template
 from django.core.files.base import ContentFile
 from django.forms.formsets import formset_factory
@@ -20,6 +19,7 @@ from apps.material.models import Material
 # Create your views here.
 def indexCompra(request):
     compras = Compra.objects.all().order_by('-co_fechaIngreso')
+    messages.success(request,'¡compras listadas!')
     context = {'compras':compras}
     if request.user.is_authenticated:
         return render(request,'compras/index.html',context)
@@ -45,13 +45,14 @@ def nuevaCompra(request):
                 producto = f.save(commit=False)#se hace un guardado falso
                 producto.compra = compra#se le asigna el id de la compra a todos los productos
                 producto.save()# se guarda esa uno por uno esos productos
-            return redirect('productos:indexProducto')#se redirecciona al index de producto
+            messages.success(request,'¡compra creada con exito!')
+            return redirect('compras:indexCompra')#se redirecciona al index de producto
     else:
         productos= Material.objects.all()
         print(productos)
         form2 = ProductoFormSet()#en la primera pasada mandamos a renderizar los formularios
         form = ComprasForm()#en la vista 
-
+       
     return render(request,'compras/formCompras.html',{'form':form,'form2':form2,'productos':productos} )
 
 
