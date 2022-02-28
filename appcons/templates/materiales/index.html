@@ -1,4 +1,6 @@
-{% extends 'base/base.html' %} {% block content%}
+{% extends 'base/base.html' %} 
+
+{% block content%}
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -11,30 +13,15 @@
           Nuevo material
         </a>
         {% endif %}
-        <div class="card-tools">
-          <div class="input-group input-group-sm" style="width: 800px;">
-            <input
-              type="text"
-              name="table_search"
-              class="form-control float-right"
-              placeholder="Buscar ...."
-            />
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-default">
-                <i class="fas fa-search" style="font-size: 17px;"></i>
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- /.card-header -->
 
-      <div class="card-body table-responsive p-0" style="height: 400px;">
-        <table class="table table-head-fixed text-nowrap">
+      <div class="card-body  p-0">
+        <table  id="tablaMateriales" class="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
+              <th>Nombres</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -65,4 +52,21 @@
   </div>
 </div>
 
+{% endblock %}
+
+
+{% block extrajs %}
+{% load static %}
+  <script>
+    $(document).ready(function(){
+      $('#tablaMateriales').DataTable({
+        responsive: true,
+        autoWidth: false,
+        
+        "language": {
+                    url : "{% static 'DataTables/spanish.txt' %}"
+                }
+        });
+    })
+  </script>
 {% endblock %}

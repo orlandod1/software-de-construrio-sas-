@@ -29,7 +29,7 @@
       </div>
       {% endfor %} {% endif %}
       <div class="card-body table-responsive p-0" style="height: 400px;">
-        <table class="table table-head-fixed text-nowrap">
+        <table id="tablaCompras" class="table table-head-fixed text-nowrap">
           <thead>
             <tr>
               <th>FECHA</th>
@@ -76,4 +76,20 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block extrajs %}
+{% load static %}
+  <script>
+    $(document).ready(function(){
+      $('#tablaCompras').DataTable({
+        responsive: true,
+        autoWidth: false,
+        
+        "language": {
+                    url : "{% static 'DataTables/spanish.txt' %}"
+                }
+        });
+    })
+  </script>
 {% endblock %}

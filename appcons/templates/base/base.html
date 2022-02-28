@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AdminLTE 3 | Fixed Sidebar</title>
 
+    <link rel="stylesheet" type="text/css" href="{% static '/DataTables/datatables.css' %}">
+
     <!-- ESTO ES EL CSS DEL SELECT2 -->
 
     {% block css %}
@@ -325,6 +327,9 @@
     <script src="{% static 'js/adminlte.min.js' %}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{% static 'js/demo.js' %}"></script>
+
+    <script type="text/javascript" charset="utf8" src="{% static '/DataTables/datatables.js' %}"></script>
+
 
     {% block extrajs %}
     <!-- esto es para hacer un espacio de los js de las demas paginas-->
