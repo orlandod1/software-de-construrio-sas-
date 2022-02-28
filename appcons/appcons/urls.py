@@ -24,5 +24,6 @@ urlpatterns = [
     path('materiales/',include('apps.material.urls',namespace="materiales")),
     path('productos/',include('apps.producto.urls',namespace="productos")),
     path('accounts/',include('django.contrib.auth.urls')),
-    path(r'^select2/', include('select2.urls')),
+    path('proovedores/',include('apps.proovedor.urls',namespace="proovedores")),
+    path('unidades/',include('apps.unidad.urls',namespace="unidades"))
 ]

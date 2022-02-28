@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %} {% block content %}
+<div class="container">
+  <form method="post" class="row justify-content-around">
+    {% csrf_token %}
+    <!--token de seguridad-->
+    {{ form.as_p }}
+    <!--se van a pintar los inputs que vienes del back-->
+
+    <button
+      type="submit"
+      class="btn btn-success row mt-4"
+      style="max-height: 40px;"
+    >
+      Guardar
+    </button>
+  </form>
+</div>
+{% endblock %} {% block extrajs %}
+<script>
+  function agregarForms() {
+    var totalForms = document.querySelector('#id_form-TOTAL_FORMS') //se accede al numero total de formularios
+
+    var nuevoLabel = document.createElement('label')
+    nuevoLabel.id = 'id_label' + totalForms.value
+    nuevoLabel.innerHTML = 'Ingrese el nombre del material: '
+
+    var nuevoInput = document
+      .querySelector('#id_form-0-ma_nombre')
+      .cloneNode(true)
+    nuevoInput.name = 'form-' + totalForms.value + '-ma_nombre'
+    nuevoInput.id = 'id_form-' + totalForms.value + '-ma_nombre'
+    nuevoInput.value = '' //input vacio
+    nuevoInput.required = 'true'
+
+    document.querySelector('#inputForms').appendChild(nuevoLabel)
+    document.querySelector('#inputForms').appendChild(nuevoInput)
+
+    totalForms.value = parseInt(totalForms.value) + 1
+  }
+
+  function deleteInput() {
+    var forms = document.querySelector('#id_form-TOTAL_FORMS')
+    if (forms.value > 1) {
+      forms.value = parseInt(forms.value) - 1
+      removeLabel = '#id_label' + forms.value
+      removeInput = '#id_form-' + forms.value + '-ma_nombre'
+
+      document.querySelector(removeInput).remove()
+      document.querySelector(removeLabel).remove()
+    } else {
+      alert('No se pueden eliminar todos')
+    }
+  }
+</script>
+{% endblock extrajs %}

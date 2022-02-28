@@ -19,7 +19,7 @@ from apps.material.models import Material
 # Create your views here.
 def indexCompra(request):
     compras = Compra.objects.all().order_by('-co_fechaIngreso')
-    messages.success(request,'¡compras listadas!')
+    
     context = {'compras':compras}
     if request.user.is_authenticated:
         return render(request,'compras/index.html',context)

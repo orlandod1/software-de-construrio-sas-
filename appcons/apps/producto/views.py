@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from apps.material.models import Material
 from apps.producto.models import Producto
 from apps.producto.form import ProductosForm
-
+from django.db.models import Q
 
 
 # Create your views here.
@@ -17,12 +17,20 @@ def indexProducto(request):
     else: 
         return redirect('login')
 
+
+
 def buscarProducto(request):
-   termino = request.GET['termino']
+   busqueda = request.POST.get("buscar")
+  
+   productos= Producto.objects.all()
+
+   if busqueda:
+        productos= Producto.objects.filter(
+            Q(nombre__icontains = busqueda)
    
-   productos= Producto.objects.filter(
-       nombre=Material.objects.get(ma_nombre__icontains = termino)
-   )
+       
+   ).distinct()
+  
    context = {'productos':productos}
  
    return render(request,'productos/index.html',context)
