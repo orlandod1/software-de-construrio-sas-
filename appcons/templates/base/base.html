@@ -5,19 +5,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdminLTE 3 | Fixed Sidebar</title>
+    <title>Construrio</title>
     
+    <!-- estilos de la libreria datatables -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dataTables/datatables.min.css' %}"/>
+
+   {% block head %}
+   {% endblock %}
 
     <!-- ESTO ES EL CSS DEL SELECT2 -->
-
-    {% block css %}
 
     <link
       href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
       rel="stylesheet"
     />
-    {% endblock css %}
-
+  
     
         <!-- Google Font: Source Sans Pro -->
     <!-- URL ICONOS -->
@@ -320,6 +322,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{% static 'js/demo.js' %}"></script>
 
+    <script type="text/javascript" src="{% static 'dataTables/datatables.min.js' %}"></script>
+ 
     {% block extrajs %}
     <!-- esto es para hacer un espacio de los js de las demas paginas-->
     {% endblock %}

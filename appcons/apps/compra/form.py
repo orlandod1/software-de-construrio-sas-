@@ -1,6 +1,4 @@
-from cProfile import label
-from logging import PlaceHolder
-from turtle import textinput
+
 from django import forms
 from apps.compra.models import Compra
 from django.contrib.auth.forms import UserCreationForm

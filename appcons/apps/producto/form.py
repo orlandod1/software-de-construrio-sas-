@@ -1,6 +1,7 @@
 
 from logging import PlaceHolder
 from operator import imod
+from tkinter import Widget
 from django import forms
 from apps.producto.models import Producto
 # from django.contrib.admin.widgets import AutocompleteSelect
@@ -29,28 +30,39 @@ class ProductosForm(forms.ModelForm):
             'pro_total':'Total',
             'prov_id':'proovedor',
         }
+
+        widgets={
+            'compra':forms.Select(attrs={'class':'form-control select2','required': 'true'}),
+            'nombre':forms.Select(attrs={'class':'form-control select2','required': 'true'}),
+            'prov_id':forms.Select(attrs={'class':'form-control select2','required': 'true'}),
+            'unidad':forms.Select(attrs={'class':'form-control select2','required': 'true'}),
+            'pro_precio':forms.NumberInput(attrs={'class':'form-control','required': 'true'}),
+            'pro_cantidad':forms.NumberInput(attrs={'class':'form-control','required': 'true'}),
+            'pro_total':forms.NumberInput(attrs={'class':'form-control','required': 'true'}),
+            
+        }
     # UNA MEJOR FORMA PARA TRAER LOS WIDGETS Y TRABAJAR CON LOS ATRIBUTOS, AQUI SE ESTÁN DECLARANDO
     #  LOS QUE SON SELECT EN SELECT2 PARA LLAMARLOS EN EL SCRIPT DEL FORMCOMPRAS
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args,**kwargs)
-        self.fields['prov_id'].widget.attrs.update({
-                    'class':' form-control select2',
-                    'required': True}) ,    
-        self.fields['nombre'].widget.attrs.update({
-                    'class':' form-control select2',
-                    'required': True })  
-        self.fields['unidad'].widget.attrs.update({
-                    'class':' form-control select2',
-                    'required': True })    
-        self.fields['pro_cantidad'].widget.attrs.update({
-                    'class':' form-control',
-                    'required': True })    
-        self.fields['pro_precio'].widget.attrs.update({
-                    'class':' form-control',
-                    'required': True })                                            
-        self.fields['pro_total'].widget.attrs.update({
-                    'class':' form-control',
-                    'required': True })    
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args,**kwargs)
+    #     self.fields['prov_id'].widget.attrs.update({
+    #                 'class':' form-control select2',
+    #                 'required': True}) ,    
+    #     self.fields['nombre'].widget.attrs.update({
+    #                 'class':' form-control select2',
+    #                 'required': True })  
+    #     self.fields['unidad'].widget.attrs.update({
+    #                 'class':' form-control select2',
+    #                 'required': True })    
+    #     self.fields['pro_cantidad'].widget.attrs.update({
+    #                 'class':' form-control',
+    #                 'required': True })    
+    #     self.fields['pro_precio'].widget.attrs.update({
+    #                 'class':' form-control',
+    #                 'required': True })                                            
+    #     self.fields['pro_total'].widget.attrs.update({
+    #                 'class':' form-control',
+    #                 'required': True })    
 
 
 

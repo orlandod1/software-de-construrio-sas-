@@ -4,7 +4,6 @@
   <form method="post" class="row justify-content-around">
     {% csrf_token %}
     <!--token de seguridad-->
-
     <div class="row">
       <div class="col-12">
         <div class="card">
@@ -51,11 +50,12 @@
                 {% for f2 in form2 %}
                 <tr>
                   <td>
-                    <!--input del provedor-->
+                    <!--input nombre del producto-->
+                    
                     {{f2.nombre}}
                   </td>
                   <td>
-                    <!--input nombre del producto-->
+                    <!--input del provedor-->
                     {{f2.prov_id}}
                   </td>
                   <td>
@@ -107,20 +107,7 @@
   >
     Agregar producto
   </button>
-  <!-- CDN DE JQUERY Y SCRIPT DEL SELECT2 -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-  <!-- EN ESTE QUERY SE LLAMA LOS SELECT QUE ESTAN DENOMINADOS COMO SELECT2 Y AUTOMATICAMENTE SE PONEN COMO SELECT2 -->
-
-  <script>
-    $('.select2').select2({
-      dropdownAutoWidth: true,
-      width: '100%',
-      placeholder: 'Selecciona lo que deseas',
-    })
-  </script>
 </div>
 
 {% endblock %}
@@ -135,5 +122,18 @@
 <script src="{% static 'admin/js/jquery.init.js' %}"></script>
 <script src="{% static 'admin/js/autocomplete.js' %}"></script> -->
 
-<script src="{% static 'src/js/calcularCompra.js' %}"></script>
+  <!-- CDN DE JQUERY Y SCRIPT DEL SELECT2 -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <!-- EN ESTE QUERY SE LLAMA LOS SELECT QUE ESTAN DENOMINADOS COMO SELECT2 Y AUTOMATICAMENTE SE PONEN COMO SELECT2 -->
+
+  <script>
+    $('.select2').select2({
+      dropdownAutoWidth: true,
+      width: '100%',
+      placeholder: 'Selecciona lo que deseas',
+    })
+  </script>
+
+  <script src="{% static 'src/js/calcularCompra.js' %}"></script>
 {% endblock extrajs %}

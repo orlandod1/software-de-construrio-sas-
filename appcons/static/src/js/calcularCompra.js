@@ -1,15 +1,13 @@
-//document.querySelector("#id_form-0-pro_total").value=0;
 function agregarFormsProducto() {
   var totalForms = document.querySelector('#id_form-TOTAL_FORMS')
 
   //nuevo input para provedores
-  var nuevoInputProvedores = document
-    .querySelector('#id_form-0-prov_id')
-    .cloneNode(true)
+  var nuevoInputProvedores = document.querySelector('#id_form-0-prov_id').cloneNode(true)
+  console.log(nuevoInputProvedores);
 
   nuevoInputProvedores.name = 'form-' + totalForms.value + '-prov_id'
   nuevoInputProvedores.id = 'id_form-' + totalForms.value + '-prov_id'
-
+  nuevoInputProvedores.class='select2'
   //nuevo input para producto
   var nuevoInputProducto = document
     .querySelector('#id_form-0-nombre')

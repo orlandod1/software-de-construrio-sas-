@@ -24,5 +24,5 @@ urlpatterns = [
     path('materiales/',include('apps.material.urls',namespace="materiales")),
     path('productos/',include('apps.producto.urls',namespace="productos")),
     path('accounts/',include('django.contrib.auth.urls')),
-    path(r'^select2/', include('select2.urls')),
+   ## path(r'^select2/', include('select2.urls')),
 ]
