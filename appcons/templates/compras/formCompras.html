@@ -33,6 +33,21 @@
             </div>
           </div>
           <!-- /.card-header -->
+
+          <div class="card-header">
+            <!-- Search form -->
+
+            <h1>SELECCIONE EL PRODUCTO</h1>
+            <br />
+
+            <input
+              class="form-control select2"
+              type="text"
+              placeholder="Ingrese el producto aquí"
+              aria-label="Search"
+            />
+          </div>
+
           <div class="card-body table-responsive p-0">
             <table class="table table-hover text-nowrap" id="tablaProductos">
               <thead>
@@ -118,7 +133,7 @@
     $('.select2').select2({
       dropdownAutoWidth: true,
       width: '100%',
-      placeholder: 'Selecciona lo que deseas',
+      placeholder: 'Selecciona el producto',
     })
   </script>
 </div>

@@ -45,7 +45,9 @@
               <td>{{compra.co_fechaIngreso}}</td>
               <td>{{compra.id}}</td>
               <td>Orlando Diaz</td>
-              <td>{{compra.co_Total}}</td>
+              <td>
+                $ {{compra.co_Total}}
+              </td>
               <td>
                 <a
                   href="{% url 'compras:compra_editar' compra.id%}"
@@ -55,9 +57,10 @@
                   <i class="fas fa-pen-square" style="font-size: 18px;"></i>
                 </a>
                 <a
-                  href="{% url 'compras:compra_eliminar' compra.id%}"
+                  href="#"
                   class="btn btn-danger"
                   title="Eliminar"
+                  onclick="confirmarEliminacionCompra({{compra.id}})"
                 >
                   <i class="fas fa-trash-alt" style="font-size: 18px;"></i>
                 </a>
@@ -76,20 +79,20 @@
   </div>
 </div>
 
-{% endblock %}
+{% endblock %} {% block extrajs %} {% load static %}
+<script>
+  $(document).ready(function () {
+    $('#tablaCompras').DataTable({
+      responsive: true,
+      autoWidth: false,
 
-{% block extrajs %}
-{% load static %}
-  <script>
-    $(document).ready(function(){
-      $('#tablaCompras').DataTable({
-        responsive: true,
-        autoWidth: false,
-        
-        "language": {
-                    url : "{% static 'DataTables/spanish.txt' %}"
-                }
-        });
+      language: {
+        url: "{% static 'DataTables/spanish.txt' %}",
+      },
     })
-  </script>
+  })
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'src/js/confirmacion.js' %}"></script>
 {% endblock %}

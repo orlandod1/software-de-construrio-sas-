@@ -30,14 +30,11 @@ def agregarMaterial(request):
 
 
 
-def materialEliminar(request, id_material):
+def materialDelete(request,id):
+    material = Material.objects.get(id=id)
+    material.delete()
 
-    material = Material.objects.get(pk=id_material) 
-
-    if request.method == 'POST':
-        material.delete()
-        return redirect('materiales:indexMateriales')
-    return render(request, 'materiales/materialdelete.html', {'materiales': material})    
+    return redirect('materiales:indexMateriales')
  
 
 

@@ -151,10 +151,11 @@ def form_valid(self, form, form2):
     return HttpResponseRedirect(self.get_success_url()) 
 
 
-class ComprasDelete(DeleteView):
-    model= Compra
-    template_name= 'compras/compradelete.html'
-    success_url = reverse_lazy('compras:indexCompra')
+def compraDelete(request,id):
+    compra = Compra.objects.get(id=id)
+    compra.delete()
+
+    return redirect('compras:indexCompra')
    
    #ESTA FUNCION ES PARA REGISTRAR EL USUARIO
 

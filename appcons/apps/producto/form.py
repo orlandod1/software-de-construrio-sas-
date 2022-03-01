@@ -34,13 +34,13 @@ class ProductosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         self.fields['prov_id'].widget.attrs.update({
-                    'class':' form-control select2',
+                    'class':' form-control',
                     'required': True}) ,    
         self.fields['nombre'].widget.attrs.update({
-                    'class':' form-control select2',
+                    'class':' form-control ',
                     'required': True })  
         self.fields['unidad'].widget.attrs.update({
-                    'class':' form-control select2',
+                    'class':' form-control ',
                     'required': True })    
         self.fields['pro_cantidad'].widget.attrs.update({
                     'class':' form-control',

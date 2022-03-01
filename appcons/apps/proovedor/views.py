@@ -37,15 +37,12 @@ class ProovedorDelete(DeleteView):
 
 
 
+def proovedorDelete(request,id):
+    proovedor = Proovedor.objects.get(id=id)
+    proovedor.delete()
 
-def proovedorEliminar(request, id_proovedor):
-
-    proovedor = Proovedor.objects.get(pk=id_proovedor) 
-
-    if request.method == 'POST':
-        proovedor.delete()
-        return redirect('proovedores:indexProovedores')
-    return render(request, 'proovedores/proovedordelete.html', {'proovedores': proovedor})    
+    return redirect('proovedores:indexProovedores')
+  
  
 
 

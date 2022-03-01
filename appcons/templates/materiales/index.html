@@ -1,6 +1,4 @@
-{% extends 'base/base.html' %} 
-
-{% block content%}
+{% extends 'base/base.html' %} {% block content%}
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -16,8 +14,8 @@
       </div>
       <!-- /.card-header -->
 
-      <div class="card-body  p-0">
-        <table  id="tablaMateriales" class="table table-striped">
+      <div class="card-body p-0">
+        <table id="tablaMateriales" class="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
@@ -39,9 +37,10 @@
                   <i class="fas fa-pen-square" style="font-size: 18px;"></i>
                 </a>
                 <a
-                  href="{% url 'materiales:materialEliminar' material.id%}"
+                  href="#"
                   class="btn btn-danger"
                   title="Eliminar"
+                  onclick="confirmarEliminacionmaterial({{material.id}})"
                 >
                   <i class="fas fa-trash-alt" style="font-size: 18px;"></i>
                 </a>
@@ -57,21 +56,19 @@
   </div>
 </div>
 
-{% endblock %}
+{% endblock %} {% block extrajs %} {% load static %}
+<script>
+  $(document).ready(function () {
+    $('#tablaMateriales').DataTable({
+      responsive: true,
+      autoWidth: false,
 
-
-{% block extrajs %}
-{% load static %}
-  <script>
-    $(document).ready(function(){
-      $('#tablaMateriales').DataTable({
-        responsive: true,
-        autoWidth: false,
-        
-        "language": {
-                    url : "{% static 'DataTables/spanish.txt' %}"
-                }
-        });
+      language: {
+        url: "{% static 'DataTables/spanish.txt' %}",
+      },
     })
-  </script>
+  })
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'src/js/confirmacion.js' %}"></script>
 {% endblock %}

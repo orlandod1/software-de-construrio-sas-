@@ -30,14 +30,11 @@ def agregarUnidad(request):
         form= UnidadForms()
     return render(request,'unidades/formUnidades.html',{'form':form})
 
-def unidadEliminar(request, id_unidad):
+def unidadDelete(request,id):
+    unidad = Unidad.objects.get(id=id)
+    unidad.delete()
 
-    unidad = Unidad.objects.get(pk=id_unidad) 
-
-    if request.method == 'POST':
-        unidad.delete()
-        return redirect('unidades:indexUnidades')
-    return render(request, 'unidades/unidaddelete.html', {'unidades': unidad})    
+    return redirect('unidades:indexUnidades')
  
 
 
