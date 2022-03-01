@@ -9,32 +9,11 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Productos Ingresados</h3>
-
-        <div class="card-tools">
-          <form method="POST" values="{{request.POST.buscar}}">
-            {% csrf_token %}
-          <div class="input-group input-group-sm" style="width: 800px;">
-            <input
-              type="text"
-              name="buscar"
-              class="form-control float-right"
-              placeholder="Buscar ...."
-              required
-            />
-
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-default"><i class="fas fa-search" style="font-size: 17px;"></i>Buscar
-                
-              </button>
-            </div>
-          </form>
-          </div>
-        </div>
       </div>
       <!-- /.card-header -->
 
-      <div class="card-body table-responsive p-0" style="height: 445px;">
-        <table class="table table-head-fixed text-nowrap">
+      <div class="card-body p-0">
+        <table id="tablaProductos" class="table table-striped">
           <thead>
             <tr>
               <th>ID DE LA COMPRA</th>
@@ -89,40 +68,20 @@
 </a>
 {% endblock %}
 
-
-<!--
-{% block extrajs%}
-
+{% block extrajs %}
 {% load static %}
-<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
-<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
-<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
   <script>
-    $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+    $(document).ready(function(){
+      $('#tablaProductos').DataTable({
+        responsive: true,
+        autoWidth: false,
+        
+        "language": {
+                    url : "{% static 'DataTables/spanish.txt' %}"
+                }
+        });
+    })
   </script>
 {% endblock %}
 
--->
+
