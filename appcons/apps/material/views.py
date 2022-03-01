@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import redirect, render
 from apps.material.models import Material
 from django.contrib.auth.decorators import login_required, permission_required
@@ -27,3 +28,28 @@ def agregarMaterial(request):
         form= MaterialFroms()
     return render(request,'materiales/formMateriales.html',{'form':form})
 
+
+
+def materialEliminar(request, id_material):
+
+    material = Material.objects.get(pk=id_material) 
+
+    if request.method == 'POST':
+        material.delete()
+        return redirect('materiales:indexMateriales')
+    return render(request, 'materiales/materialdelete.html', {'materiales': material})    
+ 
+
+
+def materialEdit (request, id_material):
+
+    material = Material.objects.get(pk=id_material)
+    if request.method == 'GET':
+        form = MaterialFroms(instance=material)
+    else:
+        form = MaterialFroms(request.POST, instance=material)
+        if form.is_valid():
+            form.save()
+        return redirect('materiales:indexMateriales')
+
+    return render(request,'materiales/formMateriales.html', {'form':form})                      

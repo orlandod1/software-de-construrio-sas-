@@ -46,11 +46,15 @@
               <td>{{proovedor.proov_nombre}}</td>
               <td>{{proovedor.proov_dni}}</td>
               <td>
-                <a href="#" class="btn btn-warning" title="Actualizar">
+                <a
+                  href="{% url 'proovedores:proovedorEdit' proovedor.id %}"
+                  class="btn btn-warning"
+                  title="Actualizar"
+                >
                   <i class="fas fa-pen-square" style="font-size: 18px;"></i>
                 </a>
                 <a
-                  href="{% url 'proovedores:proovedor_eliminar' proovedor.id%}"
+                  href="{% url 'proovedores:proovedorEliminar' proovedor.id %}"
                   class="btn btn-danger"
                   title="Eliminar"
                 >

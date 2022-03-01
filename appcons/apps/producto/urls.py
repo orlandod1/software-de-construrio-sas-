@@ -6,5 +6,6 @@ app_name = 'productos'
 urlpatterns =[
     path('', login_required(indexProducto), name='indexProducto'),
     path('buscarProducto/',login_required(buscarProducto),name='buscarProducto'),
-    path('actualizarp/<int:id_product>/', login_required(productoEdit), name='producto_editar')
+    path('actualizarp/<int:id_product>/', login_required(productoEdit), name='producto_editar'),
+    
 ]

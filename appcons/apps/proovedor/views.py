@@ -34,3 +34,30 @@ class ProovedorDelete(DeleteView):
     model= Proovedor
     template_name= 'proovedores/proovedordelete.html'
     success_url = reverse_lazy('proovedores:indexProovedores')
+
+
+
+
+def proovedorEliminar(request, id_proovedor):
+
+    proovedor = Proovedor.objects.get(pk=id_proovedor) 
+
+    if request.method == 'POST':
+        proovedor.delete()
+        return redirect('proovedores:indexProovedores')
+    return render(request, 'proovedores/proovedordelete.html', {'proovedores': proovedor})    
+ 
+
+
+def proovedorEdit (request, id_proovedor):
+
+    proovedor = Proovedor.objects.get(pk=id_proovedor)
+    if request.method == 'GET':
+        form = ProovedorForms(instance=proovedor)
+    else:
+        form = ProovedorForms(request.POST, instance=proovedor)
+        if form.is_valid():
+            form.save()
+        return redirect('proovedores:indexProovedores')
+
+    return render(request,'proovedores/formProovedores.html', {'form':form})                      

@@ -41,11 +41,15 @@
               <td>{{unidad.id}}</td>
               <td>{{unidad.un_nombre}}</td>
               <td>
-                <a href="#" class="btn btn-warning" title="Actualizar">
+                <a
+                  href="{% url 'unidades:unidadEdit' unidad.id%}"
+                  class="btn btn-warning"
+                  title="Actualizar"
+                >
                   <i class="fas fa-pen-square" style="font-size: 18px;"></i>
                 </a>
                 <a
-                  href="{% url 'unidades:unidad_eliminar' unidad.id%}"
+                  href="{% url 'unidades:unidadEliminar' unidad.id%}"
                   class="btn btn-danger"
                   title="Eliminar"
                 >

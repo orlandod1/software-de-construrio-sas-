@@ -30,7 +30,26 @@ def agregarUnidad(request):
         form= UnidadForms()
     return render(request,'unidades/formUnidades.html',{'form':form})
 
-class UnidadDelete(DeleteView):
-    model= Unidad
-    template_name= 'unidades/unidaddelete.html'
-    success_url = reverse_lazy('unidades:indexUnidades')
+def unidadEliminar(request, id_unidad):
+
+    unidad = Unidad.objects.get(pk=id_unidad) 
+
+    if request.method == 'POST':
+        unidad.delete()
+        return redirect('unidades:indexUnidades')
+    return render(request, 'unidades/unidaddelete.html', {'unidades': unidad})    
+ 
+
+
+def unidadEdit (request, id_unidad):
+
+    unidad = Unidad.objects.get(pk=id_unidad)
+    if request.method == 'GET':
+        form = UnidadForms(instance=unidad)
+    else:
+        form = UnidadForms(request.POST, instance=unidad)
+        if form.is_valid():
+            form.save()
+        return redirect('unidades:indexUnidades')
+
+    return render(request,'unidades/formUnidades.html', {'form':form})                      

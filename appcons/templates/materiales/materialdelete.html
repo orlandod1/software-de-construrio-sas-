@@ -2,11 +2,11 @@
 
 <form method="POST">
   {% csrf_token %}
-  <h3>¿Estas seguro que deseas eliminar este proovedor {{ compra.id}} ?</h3>
+  <h3>¿Estas seguro que deseas eliminar este material? {{ material.id}} ?</h3>
   <button class="btn btn-danger" type="submit">
     Si, deseo eliminar
   </button>
-  <button class="btn btn-primary" href="{% url 'proovedores:indexProovedores'}">
+  <button class="btn btn-primary" href="{% url 'materiales:indexMateriales'}">
     Cancelar
   </button>
 </form>
