@@ -1,0 +1,32 @@
+form {
+}
+
+.titulo {
+  color: #ffc947;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
+    sans-serif;
+  font-size: 40px;
+}
+.contenedor {
+  background-image: url('riohacha.png');
+  background-size: cover;
+}
+.boxLogin {
+  background-color: #876445;
+}
+.img-fluid {
+  width: 100%;
+  height: 100%;
+}
+
+.form-group {
+  border-radius: 10px;
+}
+
+input {
+  boder-radius: 10px;
+}
+
+/* .contenedor{
+  background-image: url("% static 'img/yoamoriohacha.png'%") ;
+} */

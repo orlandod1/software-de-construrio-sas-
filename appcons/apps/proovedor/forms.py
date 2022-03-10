@@ -2,6 +2,8 @@ from django import forms
 from apps.proovedor.models import Proovedor
 
 class ProovedorForms(forms.ModelForm):
+    #VALIDACIONES
+    proov_dni=forms.IntegerField(min_value=10,max_value=10)
     class Meta:
         model = Proovedor
         fields=['proov_nombre','proov_dni']

@@ -6,6 +6,9 @@ from apps.producto.models import Producto
 # from django.contrib.admin.widgets import AutocompleteSelect
 # from django.contrib import admin
 class ProductosForm(forms.ModelForm):
+    #VALIDACIONES
+    pro_precio = forms.IntegerField(min_value=1)
+    pro_cantidad = forms.IntegerField(min_value=1)
     class Meta:
         model=Producto
 
@@ -34,7 +37,7 @@ class ProductosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         self.fields['prov_id'].widget.attrs.update({
-                    'class':' form-control',
+                    'class':' form-control ',
                     'required': True}) ,    
         self.fields['nombre'].widget.attrs.update({
                     'class':' form-control ',
@@ -49,7 +52,7 @@ class ProductosForm(forms.ModelForm):
                     'class':' form-control',
                     'required': True })                                            
         self.fields['pro_total'].widget.attrs.update({
-                    'class':' form-control',
+                    'class':' form-control','readonly':'readonly',
                     'required': True })    
 
 

@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import formset_factory
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
@@ -6,9 +7,15 @@ from apps.material.form import MaterialFroms
 
 
 class FormSetMaterial(FormView):
+   
+    
+    
+    
     template_name="materiales/formMateriales.html"
     form_class= formset_factory(MaterialFroms,extra=1)
     success_url = reverse_lazy('materiales:indexMateriales')
+
+
 
     def form_valid(self, form):
         ##print(form)
@@ -20,3 +27,9 @@ class FormSetMaterial(FormView):
 
               
         return super().form_valid(form)
+
+
+
+
+
+   

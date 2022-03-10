@@ -1,13 +1,13 @@
 
 {% load static %} {% block content %}
 
-
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'src/login/css/style.css'%}" />
-
+    <link rel="stylesheet" href="{% static 'src/css/login.css' %}" />
     <link
       rel="stylesheet"
       href="{% static 'src/login/css/bootstrap.min.css'%}"
@@ -34,7 +34,8 @@
                 <form action="" method="post"class="signin-form">
                   {% csrf_token %} 
                   <div class="form-group mb-3">
-                    <label class="label" for="name">Correo</label>
+                    <label class="form-control" for="{{form.email.label}}">{{form.email.label}}</label>
+
                       <div>{{form.email}}</div>
                     
                   </div>
@@ -45,9 +46,7 @@
                   </div>
                   <div class="form-group mb-3">
                     
-                    <label class="col-6 mt-1" for="{{form.password1.label}}">
-                      {{form.password1.label}}
-                    </label>
+                    <label class="label" for="password">Password</label>
                       <div>{{form.password1}}<s/div>
                     
                   </div>

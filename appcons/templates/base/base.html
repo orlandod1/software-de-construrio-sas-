@@ -143,12 +143,7 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-              role="button"
-              onclick="salirSeccion({{user.id}})"
-            >
+            <a class="nav-link" href="{% url 'logout' %}" role="button">
               cerrar sesion
             </a>
           </li>

@@ -1,16 +1,11 @@
 from django.contrib import messages
-
-from re import template
-from django.core.files.base import ContentFile
 from django.forms.formsets import formset_factory
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from apps.compra.models import Compra
 from apps.compra.form import ComprasForm, CustomUserCreationForm
 from django.urls import reverse_lazy
-from django.views.generic import CreateView ,UpdateView,DeleteView
-from django.contrib.auth import authenticate,login
-from apps.producto.views import indexProducto
+from django.views.generic import CreateView ,UpdateView
 from apps.producto.form import ProductosForm
 from apps.producto.models import Producto
 from django.contrib.auth.models import User
