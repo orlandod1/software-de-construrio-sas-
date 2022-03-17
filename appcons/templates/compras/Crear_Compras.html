@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="card">
+
+      <div class="card-header">
+        <div class="form-group d-flex">
+          <label class="col-6 mt-1" for="{{form.co_fechaIngreso.name}}">
+            {{form.co_fechaIngreso.label}}
+          </label>
+          {{form.co_fechaIngreso}}
+        </div>
+
+        <div class="row bg-info p-2">
+          <select id="buscador" class="form-control" type="text" placeholder="Ingrese el producto aquí" aria-label="Search" />
+        </div>
+      
+        <div class="card-tools">
+          <div class="input-group input-group-sm mt-1s" style="width: 150px;">
+            <button type="submit" class="btn btn-success" style="max-height: 40px;">
+              Guardar compra
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block extrajs %}
+{% load static %}
+<!-- <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> -->
+<script src="{% static 'src/js/CrearCompra.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+            responsive: true,
+            autoWidth: false,
+
+            language: {
+                url: "{% static 'DataTables/spanish.txt' %}",
+            },
+        })
+
+        
+    })
+</script>
+
+{% endblock %}

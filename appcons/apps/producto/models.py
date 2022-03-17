@@ -1,4 +1,6 @@
+from ast import Return
 from django.db import models
+from django.forms import model_to_dict
 from apps.material.models import Material
 from apps.unidad.models import Unidad
 from apps.compra.models import Compra
@@ -21,4 +23,16 @@ class Producto  (models.Model):
         verbose_name ="Producto"
         verbose_name_plural ="Productos"
 
+
+    def toJSON(self):
+        item: model_to_dict(self)
+        item['compra']=self.compra.toJSON
+        item['nombre']=self.nombre.toJSON
+        item['unidad']=self.unidad.toJSON
+        item['pro_cantidad']=self.pro_cantidad.toJSON
+        item['pro_precio']=format(self.pro_precio,'.2f')
+        item['pro_total']=format(self.pro_total,'.2f')
+        item['prov_id']=self.prov_id.toJSON
+        
+        return item
 
